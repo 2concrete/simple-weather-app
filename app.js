@@ -27,10 +27,14 @@ async function getWeather(location) {
 function handleLocation() {
   const locationInput = document.getElementById("locationInput");
   const location = locationInput.value;
-  if (location) {
-    getWeather(location);
-    locationInput.value = "";
+
+  if (!location) {
+    alert("Please enter a location");
+    return;
   }
+
+  getWeather(location);
+  locationInput.value = "";
 }
 
 function updateWeatherDisplay(data) {
@@ -125,6 +129,15 @@ function addPin() {
     deleteBtn.onclick = function (e) {
       e.stopPropagation();
       dropdownItem.remove();
+    };
+
+    dropdownItem.onclick = function (e) {
+      e.stopPropagation();
+      const itemContent = dropdownItem.firstChild;
+      const itemContentTextNode = itemContent.lastChild;
+      const itemLocation = itemContentTextNode.textContent;
+      console.log(itemLocation);
+      getWeather(itemLocation);
     };
 
     feather.replace();

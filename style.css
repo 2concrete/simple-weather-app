@@ -175,12 +175,11 @@ body {
 }
 
 .dropdown-item {
-  gap: 4px;
   display: flex;
-  align-items: stretch; /* Changed from center to stretch */
+  align-items: center;
+  padding: 6px 8px;
+  gap: 8px;
   width: 100%;
-  padding: 4px;
-  font-size: 14px;
   background: white;
   border: 1px solid black;
   border-radius: 4px;
@@ -188,9 +187,17 @@ body {
   transition: all 0.3s ease;
 }
 
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
 .dropdown-icon {
-  width: 14px;
-  height: 14px;
+  width: 100%;
+  height: 100%;
 }
 
 .item-content {

@@ -2,6 +2,24 @@ const API_KEY = "59170f08c7c847cfbe3135258250504";
 const API_URL = "https://api.weatherapi.com/v1/forecast.json";
 let pinLocation;
 
+function saveToLocalStorage() {
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  const locations = Array.from(
+    dropdownMenu.querySelectorAll(".dropdown-item")
+  ).map((item) => item.querySelector(".item-content").textContent);
+  localStorage.setItem("pinnedWeatherLocations", JSON.stringify(locations));
+}
+
+function loadFromLocalStorage() {
+  const pinnedLocations = localStorage.getItem("pinnedWeatherLocations");
+  if (pinnedLocations) {
+    JSON.parse(pinnedLocations).forEach((location) => {
+      pinLocation = location;
+      addPin();
+    });
+  }
+}
+
 async function getWeather(location) {
   try {
     console.log("Fetching weather for:", location);
@@ -129,6 +147,7 @@ function addPin() {
     deleteBtn.onclick = function (e) {
       e.stopPropagation();
       dropdownItem.remove();
+      saveToLocalStorage();
     };
 
     dropdownItem.onclick = function (e) {
@@ -141,6 +160,7 @@ function addPin() {
     };
 
     feather.replace();
+    saveToLocalStorage();
   }
 }
 
@@ -157,3 +177,5 @@ document
 document.getElementById("searchBtn").addEventListener("click", function () {
   handleLocation();
 });
+
+document.addEventListener("DOMContentLoaded", loadFromLocalStorage);

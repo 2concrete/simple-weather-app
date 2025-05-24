@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="main">
+      <section class="main-top">
+        <div class="location-input">
+          <button id="searchBtn">
+            <i class="search-icon" data-feather="search"></i>
+          </button>
+          <input type="text" id="locationInput" placeholder="Enter City" />
+        </div>
+        <div class="navbar-icons">
+          <button id="geolocateBtn" data-feather="map-pin"></button>
+          <div class="dropdown">
+            <button class="dropdown-button" data-feather="bookmark"></button>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <button onclick="addPin()" class="dropdown-item">
+                <i
+                  class="dropdown-icon"
+                  id="dropdownIcon"
+                  data-feather="plus-square"
+                ></i
+                >Save Location
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-middle">
+        <div class="main-temp">
+          <h1 id="mainTemp"></h1>
+          <div class="icon-location">
+            <h3 id="location"></h3>
+            <h5 id="condition"></h5>
+          </div>
+        </div>
+      </section>
+      <section class="main-bottom">
+        <div>
+          <i data-feather="wind"></i>
+          <p id="wind"></p>
+        </div>
+        <div>
+          <i data-feather="eye"></i>
+          <p id="visibility"></p>
+        </div>
+        <div>
+          <i data-feather="cloud-rain"></i>
+          <p id="precipitation"></p>
+        </div>
+        <div>
+          <i data-feather="sunrise"></i>
+          <p id="sunrise"></p>
+        </div>
+        <div>
+          <i data-feather="sunset"></i>
+          <p id="sunset"></p>
+        </div>
+        <div>
+          <i data-feather="sun"></i>
+          <p id="uv"></p>
+        </div>
+      </section>
+    </div>
+    <script>
+      feather.replace();
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>

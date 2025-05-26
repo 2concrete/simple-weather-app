@@ -16,6 +16,7 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.location-input,
 .main-top,
 .main-middle,
 .main-bottom,
@@ -96,8 +97,6 @@ body {
   align-items: center;
   margin: 4px;
   width: 100%;
-  border: 2px solid black;
-  border-radius: 5px;
   position: relative;
 }
 

@@ -1,6 +1,8 @@
 const API_KEY = "59170f08c7c847cfbe3135258250504";
 const API_URL = "https://api.weatherapi.com/v1/forecast.json";
 let pinLocation;
+const unitToggleBtn = document.getElementById("unitToggleBtn");
+let units;
 
 function saveToLocalStorage() {
   const dropdownMenu = document.getElementById("dropdownMenu");
@@ -55,6 +57,29 @@ function handleLocation() {
   locationInput.value = "";
 }
 
+function unitToggle() {
+  if (units === "celsius") {
+    localStorage.setItem("savedUnits", "farenheit");
+    unitToggleBtn.innerHTML = "&deg;F";
+    units = "farenheit";
+  } else if (units === "farenheit") {
+    localStorage.setItem("savedUnits", "celsius");
+    unitToggleBtn.innerHTML = "&deg;C";
+    units = "celsius";
+  }
+}
+
+function initializeUnits() {
+  let savedUnits = localStorage.getItem("savedUnits");
+  if (!savedUnits) {
+    savedUnits = "celsius";
+    localStorage.setItem("savedUnits", savedUnits);
+  }
+
+  units = savedUnits;
+  unitToggleBtn.innerHTML = savedUnits === "celsius" ? "&deg;C" : "&deg;F";
+}
+
 function updateWeatherDisplay(data) {
   try {
     if (!data || !data.current) {
@@ -62,9 +87,16 @@ function updateWeatherDisplay(data) {
     }
 
     console.log("Updating display with data:", data);
-    document.getElementById("mainTemp").textContent = Math.round(
-      data.current.temp_c
-    );
+
+    if (units === "celsius") {
+      document.getElementById("mainTemp").textContent = Math.round(
+        data.current.temp_c
+      );
+    } else {
+      document.getElementById("mainTemp").textContent = Math.round(
+        data.current.temp_f
+      );
+    }
 
     document.getElementById("location").textContent = data.location.name;
     pinLocation = data.location.name;
@@ -204,4 +236,5 @@ document
 document.addEventListener("DOMContentLoaded", () => {
   loadFromLocalStorage();
   initializeTheme();
+  initializeUnits();
 });

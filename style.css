@@ -16,6 +16,7 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.location-input,
 .main-top,
 .main-middle,
 .main-bottom,

@@ -9,9 +9,11 @@
   </head>
   <body>
     <div class="settings">
-      <button class="settings-button"><i data-feather="moon"></i></button>
+      <button class="settings-button" id="modeToggle" onclick="modeToggle()">
+        <i data-feather="moon" id="modeIcon"></i>
+      </button>
       <div class="unit-toggle">
-        <button class="settings-button">&deg;F</button>
+        <button class="settings-button" id="unitToggle">&deg;F</button>
       </div>
     </div>
     <div class="main-container">
@@ -19,13 +21,17 @@
         <div class="main">
           <section class="main-top">
             <div class="location-input">
-              <button id="searchBtn">
+              <button id="searchBtn" onclick="handleLocation()">
                 <i class="search-icon" data-feather="search"></i>
               </button>
               <input type="text" id="locationInput" placeholder="Enter City" />
             </div>
             <div class="navbar-icons">
-              <button id="geolocateBtn" data-feather="map-pin"></button>
+              <button
+                id="geolocateBtn"
+                onclick="getLocation()"
+                data-feather="map-pin"
+              ></button>
               <div class="dropdown">
                 <button
                   class="dropdown-button"

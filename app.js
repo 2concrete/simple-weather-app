@@ -164,7 +164,34 @@ function addPin() {
   }
 }
 
-document.getElementById("geolocateBtn").addEventListener("click", getLocation);
+function modeToggle() {
+  const rootStyle = document.documentElement.style;
+  const modeIcon = document.getElementById("modeIcon");
+  const currentColorScheme =
+    rootStyle.getPropertyValue("color-scheme") || "light";
+
+  if (currentColorScheme === "light") {
+    rootStyle.setProperty("color-scheme", "dark");
+    modeIcon.setAttribute("data-feather", "sun");
+    localStorage.setItem("colorScheme", "dark");
+  } else {
+    rootStyle.setProperty("color-scheme", "light");
+    modeIcon.setAttribute("data-feather", "moon");
+    localStorage.setItem("colorScheme", "light");
+  }
+  feather.replace();
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem("colorScheme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const modeIcon = document.getElementById("modeIcon");
+  const theme = savedTheme || (prefersDark ? "dark" : "light");
+
+  document.documentElement.style.setProperty("color-scheme", theme);
+  modeIcon.setAttribute("data-feather", theme === "dark" ? "sun" : "moon");
+  feather.replace();
+}
 
 document
   .getElementById("locationInput")
@@ -174,8 +201,7 @@ document
     }
   });
 
-document.getElementById("searchBtn").addEventListener("click", function () {
-  handleLocation();
+document.addEventListener("DOMContentLoaded", () => {
+  loadFromLocalStorage();
+  initializeTheme();
 });
-
-document.addEventListener("DOMContentLoaded", loadFromLocalStorage);

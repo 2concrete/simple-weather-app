@@ -4,10 +4,44 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  font-family: "Rubik", sans-serif;
+}
+
+.settings {
+  padding: 10px;
+  position: absolute;
+  display: flex;
+  gap: 5px;
+}
+
+.settings .settings-button {
+  background-color: transparent;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+}
+
+.settings .settings-button:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.683);
+  background-color: rgba(211, 211, 211, 0.526);
+  translate: 3px 3px;
+  cursor: pointer;
+}
+
+.main-container {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Rubik", sans-serif;
 }
 
 .main {

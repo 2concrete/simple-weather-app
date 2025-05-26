@@ -14,6 +14,8 @@ A clean and simple weather application that provides real-time weather informati
   - Precipitation chance
   - Sunrise/Sunset times
   - UV index
+- **Darkmode and Lightmode Available**
+- **Toggle between Fahrenheit and Celsius**
 
 ## Technologies Used
 

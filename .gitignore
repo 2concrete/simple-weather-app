@@ -1,3 +1,4 @@
 requirements.md
 .env
-desktop.ini
+node_modules/
+config.js

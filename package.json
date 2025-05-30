@@ -1,0 +1,12 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Weather application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}

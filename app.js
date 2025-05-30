@@ -1,5 +1,4 @@
-const API_KEY = "59170f08c7c847cfbe3135258250504";
-const API_URL = "https://api.weatherapi.com/v1/forecast.json";
+import config from "./config.js";
 let pinLocation;
 const unitToggleBtn = document.getElementById("unitToggleBtn");
 let units;
@@ -26,7 +25,7 @@ async function getWeather(location) {
   try {
     console.log("Fetching weather for:", location);
     const response = await fetch(
-      `${API_URL}?key=${API_KEY}&q=${location}&days=1&aqi=no`
+      `${config.API_URL}?key=${config.API_KEY}&q=${location}&days=1&aqi=no`
     );
 
     const data = await response.json();
@@ -67,7 +66,9 @@ function unitToggle() {
     unitToggleBtn.innerHTML = "&deg;C";
     units = "celsius";
   }
+  location.reload(); // Reload to refresh the temperature display
 }
+window.unitToggle = unitToggle;
 
 function initializeUnits() {
   let savedUnits = localStorage.getItem("savedUnits");
@@ -238,3 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeTheme();
   initializeUnits();
 });
+
+// Export functions to window object for HTML access
+window.handleLocation = handleLocation;
+window.getLocation = getLocation;
+window.addPin = addPin;
+window.modeToggle = modeToggle;
